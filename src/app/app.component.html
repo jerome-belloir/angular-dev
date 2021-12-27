@@ -1,8 +1,12 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
 
-<button (click)="share()">
-Share
-</button>
+<label for="item-input">Add an item:</label>
+<input type="text" id="item-input" #newItem />
+
+<button (click)="createItem(newItem.value)">Create</button>
+<button (click)="deleteItems()">Delete</button><br />
+<button (click)="getURL()">Get</button>
+
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>

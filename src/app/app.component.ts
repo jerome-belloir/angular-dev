@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, VERSION } from '@angular/core';
 
 @Component({
@@ -7,9 +8,26 @@ import { Component, VERSION } from '@angular/core';
 })
 export class AppComponent {
   name = 'Jérôme';
+  items = [];
 
-  share() {
-    var today = Date();
-    window.alert('Partagé à : ' + today);
+  url = 'https://dummyjson.com/todos/random';
+
+  constructor(private http: HttpClient) {}
+
+  createItem(newItem) {
+    this.items.push(newItem);
+  }
+  deleteItems() {
+    this.items = [];
+  }
+
+  getURL() {
+    this.http.get<SearchResults>(this.url).subscribe((data) => {
+      this.items.push(data.todo);
+    });
+
+    interface SearchResults {
+      todo: string;
+    }
   }
 }

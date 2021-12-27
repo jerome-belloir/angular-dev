@@ -4,9 +4,15 @@
 <input type="text" id="item-input" #newItem />
 
 <button (click)="createItem(newItem.value)">Create</button>
-<button (click)="deleteItems()">Delete</button><br />
+<button (click)="deleteItems()">Delete All</button>
+
+<input type="number" id="row" #deleteRow />
+<button (click)="deleteItem(deleteRow.value)">Delete row</button><br />
+
 <button (click)="getURL()">Get</button>
 
 <ul>
-  <li *ngFor="let item of items">{{ item }}</li>
+  <li *ngFor="let item of items | keyvalue">
+    {{ item.key }}) todo: {{ item.value }}
+  </li>
 </ul>

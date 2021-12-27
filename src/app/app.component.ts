@@ -21,6 +21,10 @@ export class AppComponent {
     this.items = [];
   }
 
+  deleteItem(index){
+    this.items.splice(index, 1);
+  }
+
   getURL() {
     this.http.get<SearchResults>(this.url).subscribe((data) => {
       this.items.push(data.todo);
